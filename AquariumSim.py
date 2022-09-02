@@ -1,4 +1,4 @@
-import pygame as py
+import pygame
 # This file will be main. 
 # Initialize pygame here 
 
@@ -8,20 +8,21 @@ import pygame as py
 #       At the top of files make sure to provide a brief, and informative description of it's purpose 
 #
 #globals
-py.init()
-screen = py.display.set_mode([1000,1000])#add screen scaling when in window mode
+pygame.init()
+screen = pygame.display.set_mode((1920,1080))#add screen scaling when in window mode
 #mouse vars
-MousePos = [0,0]
+MousePos = (0,0)
 
 
-doExit = False
-while doExit ==false:
+running = True
+while running:
     #game loop, instantiate some fish in another file.
     for event in pygame.event.get():#event loop here
-            if event.type == QUIT:
-               pygame.quit()
-               return
-            elif event.type == py.KEYDOWN:
-                MousePos = pygame.key.get_pressed()#gets mouse pos
+            if event.type == pygame.QUIT:
+               running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                MousePos = pygame.mouse.get_pos()#gets mouse pos
                #click 
     #draw section/IO
+    
+pygame.quit()
