@@ -1,5 +1,6 @@
 import pygame
 from BasicFishClass import *
+from pygame.locals import *
 # This file will be main. 
 # Initialize pygame here 
 
@@ -13,10 +14,11 @@ pygame.init()
 screen = pygame.display.set_mode((1920,1080))#add screen scaling when in window mode
 #mouse vars
 MousePos = (0,0)
-
+Background = pygame.image.load("Background.png")
 
 running = True
 while running:
+    screen.blit(Background, (0,0))
     #game loop, instantiate some fish in another file.
     for event in pygame.event.get():#event loop here
             if event.type == pygame.QUIT:
@@ -26,12 +28,11 @@ while running:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
-               #click 
-            
-    screen.fill((0,0,0))
+                pygame.draw.circle(screen,(255,255,255),(MousePos),50)
     
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        pygame.draw.circle(screen,(255,255,255),(MousePos),50)
     #draw section/IO
-    pygame.display.flip()
-
+    pygame.display.update()
     
 pygame.quit()
