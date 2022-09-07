@@ -1,4 +1,5 @@
 import pygame
+from BasicFishClass import *
 # This file will be main. 
 # Initialize pygame here 
 
@@ -20,9 +21,17 @@ while running:
     for event in pygame.event.get():#event loop here
             if event.type == pygame.QUIT:
                running = False
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LCTRL]:
+                running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
                #click 
+            
+    screen.fill((0,0,0))
+    
     #draw section/IO
+    pygame.display.flip()
+
     
 pygame.quit()
