@@ -1,8 +1,8 @@
 '''Main File'''
 import pygame
-from BasicFishClass import *
+from Fish import *
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((1920,1080))#add screen scaling when in window mode
     #mouse vars
@@ -15,16 +15,19 @@ if __name__ == "__main__":
         for event in pygame.event.get():#event loop here
             if event.type == pygame.QUIT:
                 running = False
-                keys = pygame.key.get_pressed()
+            keys = pygame.key.get_pressed()
             if keys[pygame.K_LCTRL]:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
                 #click 
                 
+                
+        #render section
         screen.fill((0,0,0))
         
-        #draw section/IO
+        
+        
         pygame.display.flip()
 
         
