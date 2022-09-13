@@ -6,6 +6,8 @@ if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((1920,1080))
     MousePos = (0,0)
+    
+    salm = Salmon(100,50,50,2,400,400)
 
     Background = pygame.image.load("Background.png")
     
@@ -21,6 +23,8 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
+                
+        salm.draw(screen)
 
         pygame.display.flip()
     pygame.quit()
