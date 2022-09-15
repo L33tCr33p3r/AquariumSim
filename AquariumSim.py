@@ -1,6 +1,9 @@
 '''Main File'''
 import pygame
+import random
 from Fish import *
+from Seaweed_Sprite import *
+
 
 if __name__ == '__main__':
     pygame.init()
@@ -9,9 +12,14 @@ if __name__ == '__main__':
     MousePos = (0,0)
 
     Background = pygame.image.load("Background.png")
+
+    seaweedList = []
+    for i in range(random.randint):
+        pass
     
     running = True
     while running:
+        screen.blit(Background, (0,0))
         #game loop, instantiate some fish in another file.
         for event in pygame.event.get():#event loop here
             if event.type == pygame.QUIT:
@@ -22,8 +30,6 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
-        #draw
-        screen.blit(Background, (0,0))
 
         pygame.display.flip()
     pygame.quit()
