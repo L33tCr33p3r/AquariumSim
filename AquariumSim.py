@@ -14,8 +14,14 @@ if __name__ == '__main__':
     Background = pygame.image.load("Background.png")
 
     seaweedList = []
-    for i in range(random.randint):
-        pass
+    numOfSw = random.randint(7,14)
+    #XSpacing = 1850//numOfSw
+    for i in range(numOfSw):
+        mul = (random.randint(3, 7))
+        seaweedList.append(Seaweed((random.randint(10,(1910-(60*mul)))),(random.randint(1045, 1080)-(80*mul)),mul))
+        #seaweedList.append(Seaweed((random.randint((10+(XSpacing*i)), ((10+XSpacing)+(XSpacing*i)))),(random.randint(1045, 1080)-(80*mul)),mul))
+        #(random.randint((10+(XSpacing*numOfSw)), ((10+XSpacing)+(XSpacing*numOfSw))))
+        #random.randrange(10,1910,random.randint(XSpacing*i,XSpacing*i+XSpacing))
     
     running = True
     while running:
@@ -30,6 +36,9 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
+
+        for i in range(len(seaweedList)):
+            seaweedList[i].draw(screen)
 
         pygame.display.flip()
     pygame.quit()

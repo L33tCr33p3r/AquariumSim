@@ -1,11 +1,11 @@
 import pygame
 
 class Seaweed():
-    def __init__(self, XPos, YPos, VertFramNum, HorzFramNum, mul):
+    def __init__(self, XPos, YPos, mul):
         self.XPos = XPos
         self.YPos = YPos
-        self.VertFramNum = VertFramNum
-        self.HorzFramNum = HorzFramNum
+        self.VertFramNum = 0
+        self.HorzFramNum = 0
         self.mul = mul
         self.Sprite = pygame.image.load("Seaweed.png")
         self.Sprite = pygame.transform.scale(self.Sprite,(self.Sprite.get_width()*self.mul,self.Sprite.get_height()*self.mul))
