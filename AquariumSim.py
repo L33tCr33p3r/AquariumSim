@@ -7,7 +7,9 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((1920,1080))
     MousePos = (0,0)
     
-    salm = Salmon(100,50,50,2,400,400)
+    fishies = list()
+    for i in range(25):
+        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, 1820), random.randint(100,980)))
 
     Background = pygame.image.load("Background.png")
     
@@ -24,7 +26,8 @@ if __name__ == '__main__':
                 MousePos = pygame.mouse.get_pos()
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
                 
-        salm.draw(screen)
+        for f in fishies:
+            f.update(screen)
 
         pygame.display.flip()
     pygame.quit()
