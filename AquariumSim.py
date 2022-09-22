@@ -7,24 +7,30 @@ from Seaweed_Sprite import *
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((1920,1080)) #add screen scaling when in window mode
-    #mouse vars
+    screenX = 1920
+    screenY = 1080
+    screen = pygame.display.set_mode((screenX,screenY)) #add screen scaling when in window mode
+    
     MousePos = (0,0)
+    groundHeight = 35
+    FrameSizeX = 15
+    FrameSizeY = 60
 
     Background = pygame.image.load("Background.png")
 
     seaweedList = []
-    numOfSw = random.randint(7,14)
-    #XSpacing = 1850//numOfSw
+    numOfSw = random.randint(10,21)
     for i in range(numOfSw):
         mul = (random.randint(3, 7))
-        seaweedList.append(Seaweed((random.randint(10,(1910-(60*mul)))),(random.randint(1045, 1080)-(80*mul)),mul))
-        #seaweedList.append(Seaweed((random.randint((10+(XSpacing*i)), ((10+XSpacing)+(XSpacing*i)))),(random.randint(1045, 1080)-(80*mul)),mul))
-        #(random.randint((10+(XSpacing*numOfSw)), ((10+XSpacing)+(XSpacing*numOfSw))))
-        #random.randrange(10,1910,random.randint(XSpacing*i,XSpacing*i+XSpacing))
+        seaweedList.append(Seaweed((random.randint(10,(screenX-(FrameSizeX*mul)))),(random.randint(screenY - groundHeight, screenY)-(FrameSizeY*mul)),mul))
+
+    clock = pygame.time.Clock()
     
+    frameRate = 60
+    frameRateNum = 0
     running = True
     while running:
+        clock.tick(frameRate)
         screen.blit(Background, (0,0))
         #game loop, instantiate some fish in another file.
         for event in pygame.event.get():#event loop here
@@ -37,8 +43,11 @@ if __name__ == '__main__':
                 MousePos = pygame.mouse.get_pos()#gets mouse pos
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
 
-        for i in range(len(seaweedList)):
-            seaweedList[i].draw(screen)
+        for i in seaweedList:
+            i.draw(screen,frameRateNum)
 
+        frameRateNum += 1
+        if frameRateNum >= frameRate:
+            frameRateNum = 0
         pygame.display.flip()
     pygame.quit()
