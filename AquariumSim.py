@@ -12,6 +12,9 @@ if __name__ == '__main__':
     for i in range(25):
         fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, 1820), random.randint(100,980)))
 
+    bubles = list()
+
+
     Background = pygame.image.load("Background.png")
 
     interval: float = 10
@@ -33,17 +36,21 @@ if __name__ == '__main__':
         if pygame.time.get_ticks() % (1000 * interval) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
             spawnPoint = random.randint(100,1820)
         if pygame.time.get_ticks() % (1000 * (interval / 15)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            fishies.append(Bubles(spawnPoint))
+            bubles.append(Bubles(spawnPoint))
 
         if pygame.time.get_ticks() % (1200 * interval) < 29: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
             spawnPoint2 = random.randint(100,1820)
         if pygame.time.get_ticks() % (1000 * (interval / 20)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            fishies.append(Bubles(spawnPoint2))
+            bubles.append(Bubles(spawnPoint2))
 
         for f in fishies:
             f.update(screen)
-            if type(f) == Bubles and f.should_delete(screen):
-                fishies.remove(f)
-                del f
+            
+        for b in bubles:
+            b.update(screen)
+            if b.should_delete(screen):
+                bubles.remove(b)
+                del b
+
         pygame.display.flip()
     pygame.quit()
