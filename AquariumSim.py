@@ -1,6 +1,7 @@
 '''Main File'''
 import pygame
 from Fish import *
+from bubbles import Bubles
 
 if __name__ == '__main__':
     pygame.init()
@@ -12,7 +13,10 @@ if __name__ == '__main__':
         fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, 1820), random.randint(100,980)))
 
     Background = pygame.image.load("Background.png")
-    
+
+    interval: float = 10
+    spawnPoint: int = random.randint(100,1820)
+    spawnPoint2: int = random.randint(100,1820)
     running = True
     while running:
         screen.blit(Background, (0,0))
@@ -25,9 +29,21 @@ if __name__ == '__main__':
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()
                 pygame.draw.circle(screen,(255,255,255),(MousePos),50)
-                
+        
+        if pygame.time.get_ticks() % (1000 * interval) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            spawnPoint = random.randint(100,1820)
+        if pygame.time.get_ticks() % (1000 * (interval / 15)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            fishies.append(Bubles(spawnPoint))
+
+        if pygame.time.get_ticks() % (1200 * interval) < 29: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            spawnPoint2 = random.randint(100,1820)
+        if pygame.time.get_ticks() % (1000 * (interval / 20)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            fishies.append(Bubles(spawnPoint2))
+
         for f in fishies:
             f.update(screen)
-
+            if type(f) == Bubles and f.should_delete(screen):
+                fishies.remove(f)
+                del f
         pygame.display.flip()
     pygame.quit()
