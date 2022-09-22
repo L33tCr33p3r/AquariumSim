@@ -7,9 +7,9 @@ from bubbles import *
 
 if __name__ == '__main__':
     pygame.init()
-    screenX = 1920
-    screenY = 1080
-    screen = pygame.display.set_mode((screenX,screenY)) #add screen scaling when in window mode
+    
+    screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN) #add screen scaling when in window mode
+    screenX,screenY = screen.get_size()
     
     MousePos = (0,0)
     groundHeight = 35
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     
     fishies = list()
     for i in range(25):
-        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, 1820), random.randint(100,980)))
+        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, screenX - 100), random.randint(100,screenY - 100), screenX, screenY))
     
     seaweedList = []
     numOfSw = random.randint(10,21)
@@ -27,10 +27,11 @@ if __name__ == '__main__':
         seaweedList.append(Seaweed((random.randint(10,(screenX-(FrameSizeX*mul)))),(random.randint(screenY - groundHeight, screenY)-(FrameSizeY*mul)),mul))
     
     Background = pygame.image.load("Background.png")
+    Background = pygame.transform.scale(Background,(screenX,screenY))
     
     interval: float = 10
-    spawnPoint: int = random.randint(100,1820)
-    spawnPoint2: int = random.randint(100,1820)
+    spawnPoint: int = random.randint(100,screenX - 100)
+    spawnPoint2: int = random.randint(100,screenX - 100)
     
     clock = pygame.time.Clock()
     
@@ -58,14 +59,14 @@ if __name__ == '__main__':
         frameRateNum % frameRate
         
         if pygame.time.get_ticks() % (1000 * interval) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            spawnPoint = random.randint(100,1820)
+            spawnPoint = random.randint(100,screenX - 100)
         if pygame.time.get_ticks() % (1000 * (interval / 15)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            fishies.append(Bubles(spawnPoint))
+            fishies.append(Bubles(spawnPoint, screenY))
 
         if pygame.time.get_ticks() % (1200 * interval) < 29: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            spawnPoint2 = random.randint(100,1820)
+            spawnPoint2 = random.randint(100,screenX - 100)
         if pygame.time.get_ticks() % (1000 * (interval / 20)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
-            fishies.append(Bubles(spawnPoint2))
+            fishies.append(Bubles(spawnPoint2, screenY))
 
         for f in fishies:
             f.update(screen)
