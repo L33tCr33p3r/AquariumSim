@@ -10,7 +10,8 @@ class Bubles:
 
     def update(self, screen: pygame.Surface):
         self.by -= 8
-        pygame.draw.circle(screen, (200, 200, 255), (self.bx, self.by), 10)
+        screen.blit(self.Sprite,(self.bx, self.by))
+        #pygame.draw.circle(screen, (200, 200, 255), (self.bx, self.by), 10)
 
     def should_delete(self, screen:pygame.Surface) -> bool:
         return not screen.get_rect().collidepoint(self.bx, self.by)
@@ -18,6 +19,7 @@ class Bubles:
     def __init__(self, spawnpoint: int, screenY):
         self.bx = spawnpoint + random.randint(-75, 75)
         self.by = screenY
+        self.Sprite = pygame.image.load("Bubble.png")
 
         
         
