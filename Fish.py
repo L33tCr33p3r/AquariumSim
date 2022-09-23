@@ -2,13 +2,15 @@ import random
 import pygame
 class Fish:
     #parent class for all fish, unnecessary if all fish have the same behavior
-    def __init__(self, LifeSpanMax, Width, Height, X, Y):
+    def __init__(self, LifeSpanMax, Width, Height, X, Y, screenX, screenY):
         self.age = 0 #is born, has lived no time.
         self.age_range = LifeSpanMax #use rng to decide when this fish will die of old age
         self.width = Width
         self.height = Height
         self.x = X
         self.y = Y
+        self.screenX = screenX
+        self.screenY = screenY
         self.color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
         self.turn()
         
@@ -27,9 +29,9 @@ class Fish:
         
     def collide(self):
         #wall collision
-        if self.x + self.width > 1920 or self.x < 0:
+        if self.x + self.width > self.screenX or self.x < 0:
             self.vx *= -1
-        if self.y + self.height > 1080 or self.y < 0:
+        if self.y + self.height > self.screenY or self.y < 0:
             self.vy *= -1
         
 class Salmon(Fish):
