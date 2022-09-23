@@ -10,7 +10,7 @@ class Bubles:
 
     def update(self, screen: pygame.Surface):
         self.by -= 8
-        pygame.draw.rect(screen, (200, 200, 255), pygame.Rect(self.bx, self.by, 20, 20))
+        pygame.draw.circle(screen, (200, 200, 255), (self.bx, self.by), 10)
 
     def should_delete(self, screen:pygame.Surface) -> bool:
         return not screen.get_rect().collidepoint(self.bx, self.by)
