@@ -7,28 +7,6 @@ from bubbles import *
 
 if __name__ == "__main__":
     pygame.init()
-<<<<<<< HEAD
-    screen = pygame.display.set_mode((1920, 1080))
-    MousePos = (0, 0)
-
-    fishies = list()
-    for i in range(25):
-        fishies.append(
-            Fish(
-                120,
-                random.randint(25, 100),
-                random.randint(25, 100),
-                random.randint(0, 1820),
-                random.randint(0, 980),
-            )
-        )
-
-    Background = pygame.image.load("Background.png")
-
-    running = True
-    while running:
-        screen.blit(Background, (0, 0))
-=======
     
     screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN) #add screen scaling when in window mode
     screenX,screenY = screen.get_size()
@@ -64,7 +42,6 @@ if __name__ == "__main__":
     while running:
         clock.tick(frameRate)
         screen.blit(Background, (0,0))
->>>>>>> bf2c93a24d930e1d1c52b8fe5d15a7a0d972eb87
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
@@ -74,10 +51,7 @@ if __name__ == "__main__":
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()
-<<<<<<< HEAD
                 pygame.draw.circle(screen, (255, 255, 255), (MousePos), 50)
-=======
-                pygame.draw.circle(screen,(255,255,255),(MousePos),50)
 
         for i in seaweedList:
             i.draw(screen,frameRateNum)
@@ -93,7 +67,6 @@ if __name__ == "__main__":
             spawnPoint2 = random.randint(100,screenX - 100)
         if pygame.time.get_ticks() % (1000 * (interval / 20)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
             bubles.append(Bubles(spawnPoint2, screenY))
->>>>>>> bf2c93a24d930e1d1c52b8fe5d15a7a0d972eb87
 
         for f in fishies:
             f.update(screen)
