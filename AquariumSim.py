@@ -18,7 +18,7 @@ if __name__ == "__main__":
     
     fishies = list()
     for i in range(25):
-        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, screenX - 100), random.randint(100,screenY - 100), screenX, screenY))
+        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, screenX - 100), random.randint(100,screenY - 100)))
     bubles = list()
         
     seaweedList = []
