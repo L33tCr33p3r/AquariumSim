@@ -1,9 +1,13 @@
 """Main File"""
 import pygame
+import random
 from Fish import *
+from Seaweed_Sprite import *
+from bubbles import *
 
 if __name__ == "__main__":
     pygame.init()
+<<<<<<< HEAD
     screen = pygame.display.set_mode((1920, 1080))
     MousePos = (0, 0)
 
@@ -24,7 +28,45 @@ if __name__ == "__main__":
     running = True
     while running:
         screen.blit(Background, (0, 0))
+=======
+    
+    screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN) #add screen scaling when in window mode
+    screenX,screenY = screen.get_size()
+    
+    MousePos = (0,0)
+    groundHeight = 35
+    FrameSizeX = 15
+    FrameSizeY = 60
+    
+    fishies = list()
+    for i in range(25):
+        fishies.append(Fish(120,random.randint(25,100),random.randint(25,100),random.randint(100, screenX - 100), random.randint(100,screenY - 100), screenX, screenY))
+    bubles = list()
+        
+    seaweedList = []
+    numOfSw = random.randint(10,21)
+    for i in range(numOfSw):
+        mul = (random.randint(3, 7))
+        seaweedList.append(Seaweed((random.randint(10,(screenX-(FrameSizeX*mul)))),(random.randint(screenY - groundHeight, screenY)-(FrameSizeY*mul)),mul))
+    
+    Background = pygame.image.load("Background.png")
+    Background = pygame.transform.scale(Background,(screenX,screenY))
+    
+    interval: float = 10
+    spawnPoint: int = random.randint(100,screenX - 100)
+    spawnPoint2: int = random.randint(100,screenX - 100)
+    
+    clock = pygame.time.Clock()
+    
+    frameRate = 60
+    frameRateNum = 0
+    running = True
+    while running:
+        clock.tick(frameRate)
+        screen.blit(Background, (0,0))
+>>>>>>> bf2c93a24d930e1d1c52b8fe5d15a7a0d972eb87
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
             keys = pygame.key.get_pressed()
@@ -32,10 +74,35 @@ if __name__ == "__main__":
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()
+<<<<<<< HEAD
                 pygame.draw.circle(screen, (255, 255, 255), (MousePos), 50)
+=======
+                pygame.draw.circle(screen,(255,255,255),(MousePos),50)
+
+        for i in seaweedList:
+            i.draw(screen,frameRateNum)
+
+        frameRateNum += 1
+        frameRateNum % frameRate
+        
+        if pygame.time.get_ticks() % (1000 * interval) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            spawnPoint = random.randint(100,screenX - 100)
+        if pygame.time.get_ticks() % (1000 * (interval / 15)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            bubles.append(Bubles(spawnPoint, screenY))
+        if pygame.time.get_ticks() % (1200 * interval) < 29: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            spawnPoint2 = random.randint(100,screenX - 100)
+        if pygame.time.get_ticks() % (1000 * (interval / 20)) < 30: # declan: this code is really stupid, it should be better, but this is easier to write. Eli: nah
+            bubles.append(Bubles(spawnPoint2, screenY))
+>>>>>>> bf2c93a24d930e1d1c52b8fe5d15a7a0d972eb87
 
         for f in fishies:
             f.update(screen)
+            
+        for b in bubles:
+            b.update(screen)
+            if b.should_delete(screen):
+                bubles.remove(b)
+                del b
 
         pygame.display.flip()
     pygame.quit()
