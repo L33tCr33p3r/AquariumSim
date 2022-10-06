@@ -1,11 +1,11 @@
-'''Main File'''
+"""Main File"""
 import pygame
 import random
 from Fish import *
 from Seaweed_Sprite import *
 from bubbles import *
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pygame.init()
     
     screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN) #add screen scaling when in window mode
@@ -51,7 +51,7 @@ if __name__ == '__main__':
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 MousePos = pygame.mouse.get_pos()
-                pygame.draw.circle(screen,(255,255,255),(MousePos),50)
+                pygame.draw.circle(screen, (255, 255, 255), (MousePos), 50)
 
         for i in seaweedList:
             i.draw(screen,frameRateNum)
