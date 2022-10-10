@@ -26,13 +26,10 @@ if __name__ == "__main__":
                 random.randint(25, 100),
                 random.randint(25, 100),
                 random.randint(100, screenX - 100),
-                random.randint(100, screenY - 100),
-                screenX,
-                screenY,
+                random.randint(100, screenY - 100)
             )
         )
-    bubbles = list()
-
+    bubbles = []
     seaweedList = []
     numOfSw = random.randint(10, 21)
     for i in range(numOfSw):

@@ -13,8 +13,6 @@ class Fish:
         self.height = Height
         self.x = X
         self.y = Y
-        self.screenX = screenX
-        self.screenY = screenY
         self.color = (
             random.randint(0, 255),
             random.randint(0, 255),
@@ -23,25 +21,25 @@ class Fish:
         self.turn()
 
     def turn(self):
-        self.vx = random.random() + random.randint(-2, 1)
-        self.vy = random.random() + random.randint(-2, 1)
-
-    def update(self, screen):
-        r = random.randint(1, 100)
+        self.vx = random.random() + random.randint(-2, 2)
+        self.vy = random.random() + random.randint(-2, 2)
+        
+    def update(self, screen: pygame.surface.Surface):
+        r = random.randint(1,100)
         if r == 1:
             self.turn()
-        self.collide()
+        self.collide(screen)
         self.x += self.vx
         self.y += self.vy
         pygame.draw.rect(
             screen, self.color, ((self.x, self.y), (self.width, self.height))
         )
 
-    def collide(self):
-        # wall collision
-        if self.x + self.width > self.screenX or self.x < 0:
+    def collide(self, screen: pygame.surface.Surface):
+        #wall collision
+        if self.x + self.width > screen.get_rect().width or self.x < 0:
             self.vx *= -1
-        if self.y + self.height > self.screenY or self.y < 0:
+        if self.y + self.height > screen.get_rect().height or self.y < 0:
             self.vy *= -1
 
 
@@ -49,8 +47,8 @@ class Salmon(Fish):
     def __init__(self, LifeSpanMax, Width, Height, X, Y):
         super().__init__(
             LifeSpanMax, Width, Height, X, Y
-        )  # this uses parent class constructor PLUS
-        self.color = (255, 103, 51)  # salmony color?                 #<-- this.
+        )
+        self.color = (255, 103, 51)  # salmony color?
 
 
 class Tuna(Fish):
