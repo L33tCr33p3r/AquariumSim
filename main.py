@@ -1,8 +1,8 @@
 """Main File"""
 import pygame
 import random
-from Fish import *
-from Seaweed_Sprite import *
+from fish import *
+from seaweed import *
 from bubbles import *
 
 if __name__ == "__main__":
@@ -26,7 +26,7 @@ if __name__ == "__main__":
                 random.randint(25, 100),
                 random.randint(25, 100),
                 random.randint(100, screenX - 100),
-                random.randint(100, screenY - 100)
+                random.randint(100, screenY - 100),
             )
         )
     bubbles = []
@@ -42,7 +42,7 @@ if __name__ == "__main__":
             )
         )
 
-    Background = pygame.image.load("Background.png")
+    Background = pygame.image.load("Assets\Images\Background.png")
     Background = pygame.transform.scale(Background, (screenX, screenY))
 
     interval: float = 10

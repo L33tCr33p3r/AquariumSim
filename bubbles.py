@@ -17,4 +17,4 @@ class Bubble:
     def __init__(self, spawnpoint: int, screenY):
         self.bx = spawnpoint + random.randint(-75, 75)
         self.by = screenY
-        self.Sprite = pygame.image.load("Bubble.png")
+        self.Sprite = pygame.image.load("Assets\Images\Bubble.png")
